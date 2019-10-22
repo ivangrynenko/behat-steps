@@ -100,6 +100,28 @@ class FeatureContext extends DrupalContext {
   public function sendTestEmail($email, PyStringNode $string) {
     drupal_mail('mysite_core', 'test_email', $email, language_default(), ['body' => $string], FALSE);
   }
+
+  /**
+   * @Then :file_name file object exists
+   */
+  public function fileObjectExist($file_name) {
+    $file_name = basename($file_name);
+    $file_name_in_db = file_load_multiple([], ['filename' => $file_name]);
+    if ($file_name !== current($file_name_in_db)->filename) {
+      throw new \Exception(sprintf('"%s" file does not exist in DB, but it should', $file_name));
+    }
+  }
+
+  /**
+   * @Then :file_name file object does not exist
+   */
+  public function fileObjectNotExist($file_name) {
+    $file_name = basename($file_name);
+    $file_name_in_db = file_load_multiple([], ['filename' => $file_name]);
+    if ($file_name_in_db) {
+      throw new \Exception(sprintf('"%s" file exists in DB, but it should not.', $file_name));
+    }
+  }
         
 }
 EOL;
@@ -169,6 +191,7 @@ default:
       goutte: ~
       selenium2: ~
       base_url: http://nginx:8080
+      files_path: '/app/tests/behat/fixtures'
     Drupal\DrupalExtension:
       api_driver: drupal
       drupal:

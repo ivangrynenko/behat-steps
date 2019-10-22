@@ -36,7 +36,7 @@ trait FileTrait {
       $node = (object) $nodeHash;
 
       if (empty($node->path)) {
-        throw new \RuntimeException('"path" property is required');
+        throw new \RuntimeException('Missing required field "path".');
       }
       $path = ltrim($node->path, '/');
 
@@ -84,7 +84,13 @@ trait FileTrait {
    *
    * @Given no managed files:
    */
-  public function contentDeleteManagedFiles(TableNode $nodesTable) {
+  public function fileDeleteManagedFiles(TableNode $nodesTable) {
+    $rows = $nodesTable->getRows();
+    $header = reset($rows);
+    if (!in_array('filename', $header)) {
+      throw new \RuntimeException('Missing required field "filename".');
+    }
+
     foreach ($nodesTable->getHash() as $hash) {
       $files = file_load_multiple([], $hash);
       file_delete_multiple(array_keys($files));

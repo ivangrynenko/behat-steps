@@ -105,6 +105,17 @@ class FeatureContextD7 extends DrupalContext {
   }
 
   /**
+   * @Then :file_name file object does not exist
+   */
+  public function fileObjectNotExist($file_name) {
+    $file_name = basename($file_name);
+    $file_name_in_db = file_load_multiple([], ['filename' => $file_name]);
+    if ($file_name_in_db) {
+      throw new \Exception(sprintf('"%s" file exists in DB, but it should not.', $file_name));
+    }
+  }
+
+  /**
    * @Given set Drupal7 watchdog error level :level
    */
   public function setWatchdogErrorDrupal7($level) {
