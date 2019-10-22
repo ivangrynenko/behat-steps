@@ -67,6 +67,7 @@ trait BehatCliTrait {
 <?php
 
 use Drupal\DrupalExtension\Context\DrupalContext;
+use Behat\Gherkin\Node\PyStringNode;
 {{USE_DECLARATION}}
 
 class FeatureContext extends DrupalContext {
@@ -93,6 +94,13 @@ class FeatureContext extends DrupalContext {
     \Drupal::logger('php')->log($level, 'test');
   }  
       
+  /**  
+   * @When I send test email to :email with:
+   */
+  public function sendTestEmail($email, PyStringNode $string) {
+    drupal_mail('mysite_core', 'test_email', $email, language_default(), ['body' => $string], FALSE);
+  }
+        
 }
 EOL;
 

@@ -73,7 +73,6 @@ class FeatureContextD7 extends DrupalContext {
   }
 
   /**
-   * @When I send test email to :email with
    * @When I send test email to :email with:
    */
   public function sendTestEmail($email, PyStringNode $string) {

@@ -10,6 +10,20 @@ Feature: Check that ContentTrait works for D7
     And I visit "page" "[TEST] Page title"
     Then I should see "[TEST] Page title"
 
+  @api @trait:D7\ContentTrait
+  Scenario: Assert visiting non-existing page with title of specified content type should fail
+    Given some behat configuration
+    And scenario steps:
+      """
+      Given I am logged in as a user with the "administrator" role
+      And I visit "page" "[TEST] Page title"
+      """
+    When I run "behat --no-colors"
+    Then it should fail with an error:
+      """
+      Unable to find "page" page "[TEST] Page title"
+      """
+
   @api
   Scenario: Assert editing page with title of specified content type
     Given page content:
@@ -18,6 +32,20 @@ Feature: Check that ContentTrait works for D7
     When I am logged in as a user with the "administrator" role
     And I edit "page" "[TEST] Page title"
     Then I should see "[TEST] Page title"
+
+  @api @trait:D7\ContentTrait
+  Scenario: Assert editing non-existing page with title of specified content type should fail
+    Given some behat configuration
+    And scenario steps:
+      """
+      Given I am logged in as a user with the "administrator" role
+      And I edit "page" "[TEST] Page title"
+      """
+    When I run "behat --no-colors"
+    Then it should fail with an error:
+      """
+      Unable to find "page" page "[TEST] Page title"
+      """
 
   @api
   Scenario: Assert removing page with title and specified type

@@ -101,7 +101,7 @@ trait EmailTrait {
   public function emailAssertNoneWereSent() {
     $count = count($this->emailGetCollectedEmails());
     if ($count > 0) {
-      throw new \Exception(sprintf('Expected no emails to be sent, but sent "%s" emails', $count));
+      throw new \Exception(sprintf('Expected no emails to be sent, but sent "%s" email(s).', $count));
     }
   }
 
@@ -149,7 +149,7 @@ trait EmailTrait {
    */
   public function emailAssertFieldContains($field, PyStringNode $string, $exact = FALSE) {
     if (!in_array($field, ['subject', 'body', 'to', 'from'])) {
-      throw new \RuntimeException(sprintf('Invalid email field %s was specified for assertion', $field));
+      throw new \RuntimeException(sprintf('Invalid email field "%s" was specified for assertion.', $field));
     }
 
     $string = strval($string);
@@ -166,6 +166,8 @@ trait EmailTrait {
 
   /**
    * Assert that an email field contains an exact value.
+   *
+   * Spaces are not converted to wildcards.
    *
    * @code
    * Then an email "body" contains exact:
@@ -194,7 +196,7 @@ trait EmailTrait {
    */
   public function emailAssertFieldNotContains($field, PyStringNode $string, $exact = FALSE) {
     if (!in_array($field, ['subject', 'body', 'to', 'from'])) {
-      throw new \RuntimeException(sprintf('Invalid email field %s was specified for assertion', $field));
+      throw new \RuntimeException(sprintf('Invalid email field "%s" was specified for assertion.', $field));
     }
 
     $string = strval($string);
@@ -209,6 +211,8 @@ trait EmailTrait {
 
   /**
    * Assert that an email field does not contain an exact value.
+   *
+   * Spaces are not converted to wildcards.
    *
    * @code
    * Then an email "body" does not contain exact:
