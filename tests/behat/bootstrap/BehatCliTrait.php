@@ -18,7 +18,12 @@ trait BehatCliTrait {
     $traits = [];
 
     // Scan scenario tags and extract trait names from tags starting with
-    // 'trait:'. For example, @trait:PathTrait or @trait:D7\\UserTrait.
+    // 'trait:'.
+    // @code
+    // @trait:PathTrait or @trait:D7\\UserTrait;
+    // or
+    // @trait:PathTrait,D7\\UserTrait
+    // @endcode
     foreach ($scope->getScenario()->getTags() as $tag) {
       if (strpos($tag, 'trait:') === 0) {
         $tags = trim(substr($tag, strlen('trait:')));
@@ -27,7 +32,6 @@ trait BehatCliTrait {
           return trim(str_replace('\\\\', '\\', $value));
         }, $tags);
         $traits = array_merge($traits, $tags);
-        break;
       }
     }
 

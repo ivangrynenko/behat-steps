@@ -28,9 +28,10 @@ trait MediaTrait {
       }
     }
 
-    // @todo: Review why we need global here.
-    global $user;
-    $user = $this->getUserManager()->getCurrentUser();
+    if (!is_readable($path)) {
+      throw new \RuntimeException(sprintf('Unable to find file "%s"', $path));
+    }
+
     $data = file_get_contents($path);
     $file = file_save_data($data, 'public://' . $original_path, FILE_EXISTS_REPLACE);
 
