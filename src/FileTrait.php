@@ -1,6 +1,6 @@
 <?php
 
-namespace ivangrynenko\BehatSteps\D8;
+namespace ivangrynenko\BehatSteps;
 
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;

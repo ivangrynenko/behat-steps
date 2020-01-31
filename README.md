@@ -25,7 +25,7 @@ In `FeatureContext.php`:
 ```
 <?php
 
-use ivangrynenko\BehatSteps\D8\FileTrait;
+use ivangrynenko\BehatSteps\FileTrait;
 use ivangrynenko\BehatSteps\FormElementsTrait;
 
 /**
