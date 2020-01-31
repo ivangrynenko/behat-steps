@@ -13,26 +13,16 @@
 
 use Behat\Behat\Hook\Scope\AfterFeatureScope;
 use Drupal\DrupalExtension\Context\DrupalContext;
-use IntegratedExperts\BehatSteps\D8\WatchdogTrait;
-use IntegratedExperts\BehatSteps\FieldTrait;
-use ivangrynenko\BehatSteps\FileTrait;
+use ivangrynenko\BehatSteps\D8\FileTrait;
 use ivangrynenko\BehatSteps\FormElementsTrait;
-use IntegratedExperts\BehatSteps\LinkTrait;
-use IntegratedExperts\BehatSteps\PathTrait;
-use IntegratedExperts\BehatSteps\ResponseTrait;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContextD8 extends DrupalContext {
 
-  use FieldTrait;
   use FileTrait;
   use FormElementsTrait;
-  use LinkTrait;
-  use PathTrait;
-  use ResponseTrait;
-  use WatchdogTrait;
 
   /**
    * @Given set Drupal8 watchdog error level :level

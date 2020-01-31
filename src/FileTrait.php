@@ -6,7 +6,7 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
 
 /**
- * Trait ContentTrait.
+ * Trait FileTrait.
  *
  * @package ivangrynenko\BehatSteps\D8
  */

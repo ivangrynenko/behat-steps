@@ -10,6 +10,16 @@ This package may later be refactored to use proper architecture.
 `composer require --dev ivangrynenko/behat-steps`
 
 # Usage
+In `composer.json':
+
+```
+"autoload": {
+        "psr-4": {
+            "ivangrynenko\\BehatSteps\\": "src/"
+        }
+    },
+```
+
 In `FeatureContext.php`:
 
 ```
