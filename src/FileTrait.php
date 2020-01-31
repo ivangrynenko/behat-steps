@@ -4,6 +4,8 @@ namespace ivangrynenko\BehatSteps;
 
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
 
 /**
  * Trait FileTrait.
