@@ -114,4 +114,55 @@ trait FileTrait {
       $this->media[$media->id()] = $field_name;
     }
   }
+
+  /**
+   * Cleans up media files after every scenario.
+   *
+   * @AfterScenario @media
+   */
+  public function cleanUpMediaFiles($event) {
+    // Delete each file in the array.
+    foreach ($this->media as $media_id => $field_name) {
+      $media_entity = Media::load($media_id);
+      $file_fields = $media_entity->get($field_name)->getValue();
+      $media_entity->delete();
+      unset($this->media[$media_id]);
+
+      $file_field = reset($file_fields);
+      if (!empty($file_field['target_id'])) {
+        $file = File::load($file_field['target_id']);
+        if (!empty($file)) {
+          $file_uri = $file->getFileUri();
+          $file->delete();
+          if (file_exists(('public://' . $file_uri))) {
+            if (unlink('public://' . $file_uri)) {
+              echo '==> Clearing file: ' . $file_uri . '; ......  OK' . "\n";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Cleans up files after every scenario.
+   *
+   * @AfterScenario @file
+   */
+  public function cleanUpFiles($event) {
+    // Delete each file in the array.
+    foreach ($this->files as $id => $path) {
+      $file = File::load($id);
+      if (!empty($file)) {
+        $file_uri = $file->getFileUri();
+        $file->delete();
+        unset($this->files[$id]);
+        if (file_exists(('public://' . $file_uri))) {
+          if (unlink('public://' . $file_uri)) {
+            echo '==> Clearing file: ' . $file_uri . '; ......  OK' . "\n";
+          }
+        }
+      }
+    }
+  }
 }
