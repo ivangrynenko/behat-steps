@@ -13,7 +13,7 @@
 
 use Behat\Behat\Hook\Scope\AfterFeatureScope;
 use Drupal\DrupalExtension\Context\DrupalContext;
-use ivangrynenko\BehatSteps\D8\FileTrait;
+use ivangrynenko\BehatSteps\FileTrait;
 use ivangrynenko\BehatSteps\FormElementsTrait;
 
 /**

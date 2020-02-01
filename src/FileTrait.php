@@ -15,6 +15,50 @@ use Drupal\media\Entity\Media;
 trait FileTrait {
 
   /**
+   * Keeps track of media files added by tests so they can be cleaned up.
+   *
+   * @var array
+   */
+  public $media = [];
+
+  /**
+   * Keeps track of files added by tests so they can be cleaned up.
+   *
+   * @var array
+   */
+  public $files = [];
+
+  /**
+   * Storage Engine, a stdClass object to store values by key.
+   *
+   * @var \stdClass
+   */
+  private $storageEngine;
+  /**
+   * Valid $node_key values for test validation.
+   *
+   * @var array
+   */
+  private $nodeKeys;
+
+  /**
+   * Initializes context.
+   *
+   * Every scenario gets its own context instance.
+   * You can also pass arbitrary arguments to the
+   * context constructor through behat.yml.
+   */
+  public function __construct() {
+    $this->storageEngine = new stdClass();
+    $this->nodeKeys = [
+      'reference_fill',
+      'system_url',
+      'alias_url',
+      'edit_url',
+    ];
+  }
+
+  /**
    * @Given managed file:
    */
   public function fileCreateManaged(TableNode $nodesTable) {

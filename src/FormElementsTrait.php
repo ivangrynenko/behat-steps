@@ -10,6 +10,13 @@ namespace ivangrynenko\BehatSteps;
 trait FormElementsTrait {
 
   /**
+   * Returns fixed step argument (with \\" replaced back to ").
+   */
+  protected function fixStepArgument($argument) {
+    return str_replace('\\"', '"', $argument);
+  }
+
+  /**
    * @Given /^I select "([^"]*)" from "([^"]*)" chosen select$/
    */
   public function iSelectFromChosenSelect($option, $select) {
