@@ -2,6 +2,8 @@
 
 namespace ivangrynenko\BehatSteps;
 
+use Drupal\file\Entity\File;
+
 /**
  * Trait FormElementsTrait.
  *

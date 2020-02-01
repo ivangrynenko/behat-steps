@@ -10,7 +10,7 @@ use Drupal\media\Entity\Media;
 /**
  * Trait FileTrait.
  *
- * @package ivangrynenko\BehatSteps\D8
+ * @package ivangrynenko\BehatSteps
  */
 trait FileTrait {
 
