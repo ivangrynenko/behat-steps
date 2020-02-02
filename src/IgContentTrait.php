@@ -56,7 +56,7 @@ trait IgContentTrait {
    * context constructor through behat.yml.
    */
   public function __construct() {
-    $this->storageEngine = new stdClass();
+    $this->storageEngine = new \stdClass();
     $this->nodeKeys = [
       'reference_fill',
       'system_url',
@@ -379,7 +379,7 @@ JS;
    * @return array
    *   Saved entities.
    */
-  protected function createNodes($bundle, $hash) {
+  public function createNodes($bundle, $hash) {
     return $this->createEntities('node', $bundle, $hash);
   }
 
