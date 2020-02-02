@@ -1,4 +1,4 @@
-@d7 @d8
+@d8
 Feature: Homepage
 
   Ensure that homepage is displayed as expected.
@@ -6,11 +6,10 @@ Feature: Homepage
   @api
   Scenario: Anonymous user visits homepage
     Given I go to the homepage
-    And I should be in the "<front>" path
     Then I save screenshot
 
   @api @javascript
   Scenario: Anonymous user visits homepage
     Given I go to the homepage
-    And I should be in the "<front>" path
+    And I set browser window size to "1600" x "1600"
     Then I save screenshot

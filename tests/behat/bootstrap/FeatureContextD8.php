@@ -15,6 +15,7 @@ use Behat\Behat\Hook\Scope\AfterFeatureScope;
 use Drupal\DrupalExtension\Context\DrupalContext;
 use ivangrynenko\BehatSteps\FileTrait;
 use ivangrynenko\BehatSteps\FormElementsTrait;
+use ivangrynenko\BehatSteps\IgContentTrait;
 
 /**
  * Defines application features from the specific context.
@@ -23,6 +24,7 @@ class FeatureContextD8 extends DrupalContext {
 
   use FileTrait;
   use FormElementsTrait;
+  use IgContentTrait;
 
   /**
    * @Given set Drupal8 watchdog error level :level
