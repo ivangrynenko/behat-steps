@@ -66,20 +66,6 @@ trait IgContentTrait {
   }
 
   /**
-   * @var \Drupal\DrupalExtension\Context\MinkContext
-   */
-  protected $minkContext;
-
-  /**
-   * @BeforeScenario
-   */
-  public function contentGetMinkContext(BeforeScenarioScope $scope) {
-    /** @var \Behat\Behat\Context\Environment\InitializedContextEnvironment $environment */
-    $environment = $scope->getEnvironment();
-    $this->minkContext = $environment->getContext('Drupal\DrupalExtension\Context\MinkContext');
-  }
-
-  /**
    * @Given deleted any content of type :arg1
    */
   public function noContentOfType($arg1) {
