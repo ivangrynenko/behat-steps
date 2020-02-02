@@ -77,8 +77,7 @@ commands:
     cmd: |
       ahoy title "Installing fixture Drupal $DRUPAL_VERSION site"
       ahoy cli "chmod -Rf 777 \$APP/\$BUILD || true; rm -Rf \$APP/\$BUILD || true; mkdir -p \$APP/\$WEBROOT"
-      ahoy cli "cp -Rf \$APP/\$FIXTURES/. \$APP/\$BUILD/"
-      ahoy cli "cp -Rf \$APP/composer.json \$APP/\$BUILD/"
+      ahoy cli "cp -Rf \$APP/\$FIXTURES/d\$DRUPAL_VERSION/. \$APP/\$BUILD/"
       ahoy cli "composer --working-dir=\$APP/\$BUILD install --prefer-dist --no-suggest"
       ahoy cli "/usr/bin/env PHP_OPTIONS='-d sendmail_path=/bin/true' drush -r \$APP/\$WEBROOT si standard -y --db-url=mysql://drupal:drupal@\$AMAZEEIO_DB_HOST/drupal --account-name=admin --account-pass=admin install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL"
       ahoy cli "composer --working-dir=\$APP/\$BUILD drupal-post-install"

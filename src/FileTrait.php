@@ -49,7 +49,7 @@ trait FileTrait {
    * context constructor through behat.yml.
    */
   public function __construct() {
-    $this->storageEngine = new stdClass();
+    $this->storageEngine = new \stdClass();
     $this->nodeKeys = [
       'reference_fill',
       'system_url',
