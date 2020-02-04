@@ -2,7 +2,7 @@
 
 namespace ivangrynenko\BehatSteps;
 
-use Drupal\file\Entity\File;
+use Behat\Gherkin\Node\TableNode;
 
 /**
  * Trait FormElementsTrait.
